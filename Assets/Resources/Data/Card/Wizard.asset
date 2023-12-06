@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8069ba37734388b872c14efd3eeb7c, type: 3}
+  m_Name: Wizard
+  m_EditorClassIdentifier: 
+  isCard: 1
+  isTroopCard: 1
+  isRangedAttack: 1
+  isAreaDamageAttack: 1
+  isRotatable: 1
+  DamageableHealthData:
+    MaxHealth: 60
+  DamageablePhysicData:
+    TargetDetectionRange: 30
+  DamageableAttackData:
+    AttackParticleType: 2
+    AttackDamage: 10
+    AttackRange: 4
+    AttackSpeed: 2
+  CardInstallationData:
+    InstallationTime: 3
+  CardMovementData:
+    MovementSpeed: 2.25
+  CardNavmeshData:
+    NavmeshRadius: 0.7
+    NavmeshHeight: 2
+  RangedDamageableAttackData:
+    ProjectileType: 2
+    ProjectileSpeed: 20
+  AreaDamageAttackData:
+    DamageRadius: 1
+  DamageableRotationData:
+    RotationDuration: 0.5
