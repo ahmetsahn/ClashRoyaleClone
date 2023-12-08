@@ -8,11 +8,11 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
         {
             base.ThrowProjectile();
             
-            Projectile.transform.DOMove(TargetPosition, ProjectileArrivalTime)
+            ProjectileView.transform.DOMove(TargetPosition, ProjectileArrivalTime)
                 .SetEase(Ease.Linear)
                 .OnComplete(() =>
                 {
-                    ProjectilePoolSignals.OnReturnProjectileToPool(Projectile);
+                    ProjectilePoolSignals.OnReturnProjectileToPool(ProjectileView);
                     ControlAndDamageTheTarget();
                 });
         }

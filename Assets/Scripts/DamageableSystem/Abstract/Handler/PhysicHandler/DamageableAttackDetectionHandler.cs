@@ -36,9 +36,9 @@ namespace DamageableSystem.Abstract.Handler.PhysicHandler
 
         private bool IsTargetInAttackRange()
         {
-            var targetColliders = Physics.OverlapSphere(DamageableView.Transform.position, DamageableView.DamageableSo.DamageableAttackData.AttackRange);
+            Collider[] targetColliders = Physics.OverlapSphere(DamageableView.Transform.position, DamageableView.DamageableSo.DamageableAttackData.AttackRange);
             
-            foreach (var targetCollider in targetColliders)
+            foreach (Collider targetCollider in targetColliders)
             {
                 if (!targetCollider.TryGetComponent(out IDamageable target))
                 {

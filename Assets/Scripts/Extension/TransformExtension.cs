@@ -9,7 +9,7 @@ namespace Extension
         
         public static void MatchPositionToRaycastHit(this Transform transform)
         {
-            if (!Physics.Raycast(Util.Utils.Ray, out var hit, Mathf.Infinity,LayerMask))
+            if (!Physics.Raycast(Util.Utils.Ray, out RaycastHit hit, Mathf.Infinity,LayerMask))
             {
                 return;
             }
@@ -20,7 +20,7 @@ namespace Extension
         
         public static void MatchPositionToRaycastHit(this Transform transform, float yValue)
         {
-            if (!Physics.Raycast(Util.Utils.Ray, out var hit, Mathf.Infinity,LayerMask))
+            if (!Physics.Raycast(Util.Utils.Ray, out RaycastHit hit, Mathf.Infinity,LayerMask))
             {
                 return;
             }

@@ -53,7 +53,7 @@ namespace UISystem
         
         private void OnCloseAllPanels()
         {
-            foreach (var layer in _layers)
+            foreach (Transform layer in _layers)
             {
                 if (layer.childCount <= 0) return;
                 foreach (Transform child in layer)

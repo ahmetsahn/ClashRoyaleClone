@@ -25,6 +25,7 @@ namespace DamageableSystem.CardSystem.View
         protected override void InitializeDamageable()
         {
             base.InitializeDamageable();
+            
             OnInitializeTroopCard?.Invoke();
         }
 

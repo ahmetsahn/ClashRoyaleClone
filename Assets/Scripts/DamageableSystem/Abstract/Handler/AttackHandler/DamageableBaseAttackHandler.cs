@@ -1,4 +1,5 @@
 using DamageableSystem.Abstract.View;
+using ParticleSystem.View;
 using Signal;
 using UnityEngine;
 using Zenject;
@@ -9,19 +10,19 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
     {
         protected DamageableView DamageableView;
         
-        protected DamageableSignals DamageableSignals;
+        private DamageableSignals _damageableSignals;
         
-        protected ParticlePoolSignals ParticlePoolSignals;
+        private ParticlePoolSignals _particlePoolSignals;
         
-        protected GameObject AttackParticle;
+        protected ParticleView AttackParticle;
         
         [Inject]
         private void Construct(
             DamageableSignals damageableSignals,
             ParticlePoolSignals particlePoolSignals)
         {
-            DamageableSignals = damageableSignals;
-            ParticlePoolSignals = particlePoolSignals;
+            _damageableSignals = damageableSignals;
+            _particlePoolSignals = particlePoolSignals;
         }
         
         protected virtual void ControlAndDamageTheTarget()
@@ -45,7 +46,7 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
                 return;
             }
             
-            DamageableSignals.OnTargetDestroyed?.Invoke(DamageableView.CurrentTarget);
+            _damageableSignals.OnTargetDestroyed?.Invoke(DamageableView.CurrentTarget);
         }
 
         protected void PlayAttackParticle()
@@ -57,7 +58,7 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
 
         private void SetAttackParticle()
         {
-            AttackParticle = ParticlePoolSignals.OnGetParticle?.Invoke(DamageableView.DamageableSo.DamageableAttackData.AttackParticleType);
+            AttackParticle = _particlePoolSignals.OnGetParticle?.Invoke(DamageableView.DamageableSo.DamageableAttackData.AttackParticleType);
         }
         
         protected virtual void SetAttackParticlePosition()
@@ -67,12 +68,12 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
         
         private void SetActiveAttackParticle()
         {
-            AttackParticle.SetActive(true);
+            AttackParticle.gameObject.SetActive(true);
         }
        
         protected void SetDisabledAttackParticle()
         {
-            AttackParticle.SetActive(false);
+            AttackParticle.gameObject.SetActive(false);
         }
     }
 }

@@ -1,4 +1,3 @@
-using Signal;
 using UISystem.CardButtonSystem.View;
 
 namespace UISystem.CardButtonSystem.State

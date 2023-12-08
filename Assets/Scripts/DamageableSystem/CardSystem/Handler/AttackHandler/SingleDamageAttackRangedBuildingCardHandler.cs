@@ -1,6 +1,5 @@
 using DamageableSystem.Abstract.Handler.AttackHandler;
 using DamageableSystem.CardSystem.View;
-using Signal;
 using Zenject;
 
 namespace DamageableSystem.CardSystem.Handler.AttackHandler

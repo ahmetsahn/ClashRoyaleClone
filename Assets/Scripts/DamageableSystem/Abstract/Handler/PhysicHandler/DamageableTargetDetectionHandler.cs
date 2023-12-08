@@ -22,12 +22,12 @@ namespace DamageableSystem.Abstract.Handler.PhysicHandler
 
         private void OnSetNewTarget()
         {
-            var targetColliders = Physics.OverlapSphere(DamageableView.Transform.position, DamageableView.DamageableSo.DamageablePhysicData.TargetDetectionRange);
-            var closestDistance = Mathf.Infinity;
+            Collider[] targetColliders = Physics.OverlapSphere(DamageableView.Transform.position, DamageableView.DamageableSo.DamageablePhysicData.TargetDetectionRange);
+            float closestDistance = Mathf.Infinity;
             
             DamageableView.CurrentTarget = null;
 
-            foreach (var targetCollider in targetColliders)
+            foreach (Collider targetCollider in targetColliders)
             {
                 if (!targetCollider.TryGetComponent(out IDamageable target))
                 {
@@ -39,7 +39,7 @@ namespace DamageableSystem.Abstract.Handler.PhysicHandler
                     continue;
                 }
                 
-                var distanceToTarget = Vector3.Distance(DamageableView.Transform.position, target.Transform.position);
+                float distanceToTarget = Vector3.Distance(DamageableView.Transform.position, target.Transform.position);
 
                 if (!(distanceToTarget < closestDistance)) continue;
                 

@@ -2,7 +2,6 @@ using DamageableSystem.Abstract.Handler.AttackHandler;
 using DamageableSystem.CardSystem.View;
 using DG.Tweening;
 using Interfaces;
-using Signal;
 using UnityEngine;
 using Zenject;
 
@@ -21,13 +20,13 @@ namespace DamageableSystem.CardSystem.Handler.AttackHandler
         {
             base.ThrowProjectile();
             
-            Projectile.transform.DOMove(TargetPosition, ProjectileArrivalTime).SetEase(Ease.Linear).OnComplete(() =>
+            ProjectileView.transform.DOMove(TargetPosition, ProjectileArrivalTime).SetEase(Ease.Linear).OnComplete(() =>
             {
-                ProjectilePoolSignals.OnReturnProjectileToPool(Projectile);
+                ProjectilePoolSignals.OnReturnProjectileToPool(ProjectileView);
                 PlayAttackParticle();
                 
-                var colliders = Physics.OverlapSphere(Projectile.transform.position, DamageableView.DamageableSo.AreaDamageAttackData.DamageRadius);
-                foreach (var collider in colliders)
+                Collider[] colliders = Physics.OverlapSphere(ProjectileView.transform.position, DamageableView.DamageableSo.AreaDamageAttackData.DamageRadius);
+                foreach (Collider collider in colliders)
                 {
                     if (!collider.TryGetComponent(out IDamageable target))
                     {

@@ -1,6 +1,5 @@
 using DamageableSystem.Abstract.Handler.AttackHandler;
 using DamageableSystem.TowerSystem.View;
-using Signal;
 using Zenject;
 
 namespace DamageableSystem.TowerSystem.Handler.AttackHandler

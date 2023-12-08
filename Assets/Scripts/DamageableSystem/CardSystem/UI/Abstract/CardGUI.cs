@@ -37,7 +37,7 @@ namespace DamageableSystem.CardSystem.UI.Abstract
 
         private void SetCanvasRotation()
         {
-            var cardViewRotationY = DamageableView.Transform.rotation.eulerAngles.y;
+            float cardViewRotationY = DamageableView.Transform.rotation.eulerAngles.y;
             Canvas.transform.localRotation = Quaternion.Euler(0f, -cardViewRotationY + 180, 0f);
         }
 

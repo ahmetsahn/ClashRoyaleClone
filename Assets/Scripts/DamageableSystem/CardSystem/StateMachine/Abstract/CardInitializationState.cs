@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using DamageableSystem.Abstract.StateMachine;
 using DamageableSystem.CardSystem.View.Abstract;
 using DG.Tweening;
@@ -6,23 +8,28 @@ using Zenject;
 
 namespace DamageableSystem.CardSystem.StateMachine.Abstract
 {
-    public abstract class CardInitializationState : DamageableBaseState, IDisposable
+    public abstract class CardInitializationState : DamageableBaseState, IInitializable, IDisposable
     {
         protected CardView CardView;
 
-        private Sequence _mySequence;
+        private CancellationTokenSource _cancellationTokenSource; 
         
-        protected void SubscribeEvents()
+        public void Initialize()
         {
-            CardView.OnResetCard += KillSequence;
-            CardView.CoreGameSignals.OnGameEnd += KillSequence;
+            SubscribeEvents();
+        }
+        
+        private void SubscribeEvents()
+        {
+            CardView.OnResetCard += CancelToken;
+            CardView.CoreGameSignals.OnGameEnd += CancelToken;
         }
 
-        public override void EnterState()
+        public override async void EnterState()
         {
-            _mySequence = DOTween.Sequence();
-            _mySequence.PrependInterval(CardView.DamageableSo.CardInstallationData.InstallationTime);
-            _mySequence.AppendCallback(ExitInitializationState);
+            _cancellationTokenSource = new CancellationTokenSource();
+            await Task.Delay(TimeSpan.FromSeconds(CardView.DamageableSo.CardInstallationData.InstallationTime));
+            ExitInitializationState();
         }
 
         protected virtual void ExitInitializationState()
@@ -31,20 +38,21 @@ namespace DamageableSystem.CardSystem.StateMachine.Abstract
             CardView.OnSetNewTarget?.Invoke();
         }
 
-        private void KillSequence()
+        private void CancelToken()
         {
-            _mySequence?.Kill();
+            _cancellationTokenSource.Cancel();
         }
         
         private void UnsubscribeEvents()
         {
-            CardView.OnResetCard -= KillSequence;
-            CardView.CoreGameSignals.OnGameEnd -= KillSequence;
+            CardView.OnResetCard -= CancelToken;
+            CardView.CoreGameSignals.OnGameEnd -= CancelToken;
         }
         
         public void Dispose()
         {
             UnsubscribeEvents();
+            CancelToken();
         }
     }
 }

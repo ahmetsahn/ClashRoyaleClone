@@ -23,7 +23,7 @@ MonoBehaviour:
     TargetDetectionRange: 6
   DamageableAttackData:
     AttackParticleType: 0
-    AttackDamage: 15
+    AttackDamage: 30
     AttackRange: 6
     AttackSpeed: 10
   CardInstallationData:

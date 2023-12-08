@@ -24,8 +24,8 @@ namespace DamageableSystem.Abstract.Handler.MovementHandler
         
         protected void OnRotateToTarget()
         {
-            var targetPosition = DamageableView.CurrentTarget.Transform.position;
-            var targetXZPosition = new Vector3(targetPosition.x, Transform.position.y, targetPosition.z);
+            Vector3 targetPosition = DamageableView.CurrentTarget.Transform.position;
+            Vector3 targetXZPosition = new Vector3(targetPosition.x, Transform.position.y, targetPosition.z);
             Transform.DOLookAt(targetXZPosition, DamageableView.DamageableSo.DamageableRotationData.RotationDuration);
         }
         

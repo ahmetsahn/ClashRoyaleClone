@@ -55,7 +55,7 @@ namespace InputSystem
                 return;
             }
             
-            if (!Physics.Raycast(Util.Utils.Ray, out var hit, Mathf.Infinity,_layerMask))
+            if (!Physics.Raycast(Util.Utils.Ray, out RaycastHit hit, Mathf.Infinity,_layerMask))
             {
                 return;
             }

@@ -32,14 +32,14 @@ namespace PoolSystem
     
         private CardView CreateCard(CardType cardType)
         {
-            var newObject = _cardFactory.Create(cardType);
+            CardView newObject = _cardFactory.Create(cardType);
             newObject.name = cardType.ToString();
             return newObject;
         }
 
         private CardView OnGetCard(CardType cardType)
         {
-            foreach (var card in _objectPool)
+            foreach (CardView card in _objectPool)
             {
                 if (card.gameObject.activeSelf == false && card.name == cardType.ToString())
                 {
@@ -48,12 +48,12 @@ namespace PoolSystem
                 }
             }
         
-            var newCard = CreateCard(cardType);
+            CardView newCard = CreateCard(cardType);
             _objectPool.Add(newCard);
             return newCard;
         }
 
-        public void OnReturnCardToPool(CardView cardView)
+        private void OnReturnCardToPool(CardView cardView)
         {
             cardView.gameObject.SetActive(false);
         }

@@ -1,5 +1,6 @@
 using System;
 using Enums;
+using ParticleSystem.View;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,8 +8,8 @@ namespace Signal
 {
     public class ParticlePoolSignals
     {
-        public Func<ParticleType, GameObject> OnGetParticle;
+        public Func<ParticleType, ParticleView> OnGetParticle;
         
-        public UnityAction<GameObject> OnReturnParticleToPool;
+        public UnityAction<ParticleView> OnReturnParticleToPool;
     }
 }

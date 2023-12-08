@@ -83,8 +83,8 @@ namespace SpawnerSystem
         private void InitializeCard(CardView card, int positionRandomIndex)
         {
             card.DamageableSide = DamageableSideType.Enemy;
-            var cardTransform = card.transform;
-            var spawnPosition = new Vector3(_cardSpawnPoints[positionRandomIndex].x, cardTransform.position.y, _cardSpawnPoints[positionRandomIndex].z);
+            Transform cardTransform = card.transform;
+            Vector3 spawnPosition = new Vector3(_cardSpawnPoints[positionRandomIndex].x, cardTransform.position.y, _cardSpawnPoints[positionRandomIndex].z);
             cardTransform.position = spawnPosition;
             card.OnSetInitialRotation?.Invoke();
             card.gameObject.SetActive(true);

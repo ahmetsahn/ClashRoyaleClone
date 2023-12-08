@@ -13,7 +13,7 @@ namespace PoolSystem
         
         private readonly ProjectilePoolSignals _projectilePoolSignals;
         
-        private readonly List<GameObject> _objectPool = new();
+        private readonly List<ProjectileView> _objectPool = new();
         
         public ProjectilePool(
             ProjectileView.Factory projectileFactory, 
@@ -31,32 +31,32 @@ namespace PoolSystem
             _projectilePoolSignals.OnReturnProjectileToPool += OnReturnProjectileToPool;
         }
     
-        private GameObject CreateProjectile(ProjectileType projectileType)
+        private ProjectileView CreateProjectile(ProjectileType projectileType)
         {
-            var newObject = _projectileFactory.Create(projectileType).gameObject;
+            ProjectileView newObject = _projectileFactory.Create(projectileType);
             newObject.name = projectileType.ToString();
             return newObject;
         }
 
-        private GameObject OnGetProjectile(ProjectileType projectileType)
+        private ProjectileView OnGetProjectile(ProjectileType projectileType)
         {
-            foreach (var projectile in _objectPool)
+            foreach (ProjectileView projectile in _objectPool)
             {
-                if (projectile.activeSelf == false && projectile.name == projectileType.ToString())
+                if (projectile.gameObject.activeSelf == false && projectile.name == projectileType.ToString())
                 {
-                    projectile.SetActive(true);
+                    projectile.gameObject.SetActive(true);
                     return projectile;
                 }
             }
         
-            var newProjectile = CreateProjectile(projectileType);
+            ProjectileView newProjectile = CreateProjectile(projectileType);
             _objectPool.Add(newProjectile);
             return newProjectile;
         }
 
-        public void OnReturnProjectileToPool(GameObject projectileView)
+        private void OnReturnProjectileToPool(ProjectileView projectileView)
         {
-            projectileView.SetActive(false);
+            projectileView.gameObject.SetActive(false);
         }
     
         private void UnsubscribeEvents()

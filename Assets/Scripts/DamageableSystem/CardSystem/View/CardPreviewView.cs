@@ -58,7 +58,7 @@ namespace DamageableSystem.CardSystem.View
             
             _inputSignals.OnEnableInput?.Invoke(false);
             
-            foreach (var material in materials)
+            foreach (Material material in materials)
             {
                 material.color = materialRedColor;
                 material.SetColor(EmissionColor, materialEmissionRedColor);
@@ -76,7 +76,7 @@ namespace DamageableSystem.CardSystem.View
             
             _inputSignals.OnEnableInput?.Invoke(true);
             
-            foreach (var material in materials)
+            foreach (Material material in materials)
             {
                 material.color = materialDefaultColor;
                 material.SetColor(EmissionColor, materialEmissionDefaultColor);
@@ -93,8 +93,8 @@ namespace DamageableSystem.CardSystem.View
 
         private void DetectionColliders()
         {
-            var colliders = Physics.OverlapSphere(transform.position, overlapSphereRadius);
-            foreach (var collider in colliders)
+            Collider[] colliders = Physics.OverlapSphere(transform.position, overlapSphereRadius);
+            foreach (Collider collider in colliders)
             {
                 if (!collider.TryGetComponent(out DamageableView damageableView)) continue;
                 SetMaterialsColorRed();

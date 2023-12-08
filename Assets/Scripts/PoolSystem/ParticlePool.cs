@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Enums;
 using ParticleSystem.View;
 using Signal;
-using UnityEngine;
 
 namespace PoolSystem
 {
@@ -13,7 +12,7 @@ namespace PoolSystem
         
         private readonly ParticlePoolSignals _particlePoolSignals;
         
-        private readonly List<GameObject> _objectPool = new();
+        private readonly List<ParticleView> _objectPool = new();
         
         public ParticlePool(
             ParticleView.Factory particleFactory, 
@@ -31,32 +30,32 @@ namespace PoolSystem
             _particlePoolSignals.OnReturnParticleToPool += OnReturnParticleToPool;
         }
         
-        private GameObject CreateParticle(ParticleType particleType)
+        private ParticleView CreateParticle(ParticleType particleType)
         {
-            var newObject = _particleFactory.Create(particleType).gameObject;
+            ParticleView newObject = _particleFactory.Create(particleType);
             newObject.name = particleType.ToString();
             return newObject;
         }
         
-        public GameObject OnGetParticle(ParticleType particleType)
+        private ParticleView OnGetParticle(ParticleType particleType)
         {
-            foreach (var particle in _objectPool)
+            foreach (ParticleView particle in _objectPool)
             {
-                if (particle.activeSelf == false && particle.name == particleType.ToString())
+                if (particle.gameObject.activeSelf == false && particle.name == particleType.ToString())
                 {
-                    particle.SetActive(true);
+                    particle.gameObject.SetActive(true);
                     return particle;
                 }
             }
             
-            var newParticle = CreateParticle(particleType);
+            ParticleView newParticle = CreateParticle(particleType);
             _objectPool.Add(newParticle);
             return newParticle;
         }
         
-        public void OnReturnParticleToPool(GameObject particleView)
+        private void OnReturnParticleToPool(ParticleView particleView)
         {
-            particleView.SetActive(false);
+            particleView.gameObject.SetActive(false);
         }
         
         private void UnsubscribeEvents()

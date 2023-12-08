@@ -7,6 +7,7 @@ namespace Data.ValueType.Damageable
     public struct DamageableAttackData
     {
         public ParticleType AttackParticleType;
+        
         public float AttackDamage;
         public float AttackRange;
         public float AttackSpeed;

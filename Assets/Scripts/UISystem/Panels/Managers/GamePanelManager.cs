@@ -53,7 +53,7 @@ namespace UISystem.Panels.Managers
 
         private void InitializeDictionary()
         {
-            for (var i = 0; i < cardButtonViews.Length; i += 2)
+            for (int i = 0; i < cardButtonViews.Length; i += 2)
             {
                 _buttonDictionary.Add(cardButtonViews[i], cardButtonViews[i + 1]);
                 _buttonDictionary.Add(cardButtonViews[i + 1], cardButtonViews[i]);

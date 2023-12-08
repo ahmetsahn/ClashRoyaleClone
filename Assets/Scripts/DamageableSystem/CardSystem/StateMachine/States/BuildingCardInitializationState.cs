@@ -12,8 +12,6 @@ namespace DamageableSystem.CardSystem.StateMachine.States
             BuildingCardView buildingCardView)
         {
             CardView = buildingCardView;
-            
-            SubscribeEvents();
         }
         protected override void ExitInitializationState()
         {

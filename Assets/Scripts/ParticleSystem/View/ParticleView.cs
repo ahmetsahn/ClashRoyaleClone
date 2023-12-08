@@ -32,7 +32,7 @@ namespace ParticleSystem.View
         
         private void ParticleSystemStopped()
         {
-            _particlePoolSignals.OnReturnParticleToPool?.Invoke(gameObject);
+            _particlePoolSignals.OnReturnParticleToPool?.Invoke(this);
         }
 
         public class Factory : PlaceholderFactory<ParticleType, ParticleView> { }

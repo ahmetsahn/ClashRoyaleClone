@@ -1,4 +1,5 @@
 using Extension;
+using ProjectileSystem.View;
 using Signal;
 using UnityEngine;
 using Zenject;
@@ -14,7 +15,7 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
         
         protected Vector3 TargetPosition;
         
-        protected GameObject Projectile;
+        protected ProjectileView ProjectileView;
         
         protected float ProjectileArrivalTime;
         
@@ -41,17 +42,17 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
 
         private void SetProjectile()
         {
-            Projectile = ProjectilePoolSignals.OnGetProjectile(DamageableView.DamageableSo.RangedDamageableAttackData.ProjectileType);
+            ProjectileView = ProjectilePoolSignals.OnGetProjectile(DamageableView.DamageableSo.RangedDamageableAttackData.ProjectileType);
         }
         
         private void SetProjectilePosition()
         {
-            Projectile.transform.MatchPositionToSpawnPoint(ProjectileSpawnPoint);
+            ProjectileView.transform.MatchPositionToSpawnPoint(ProjectileSpawnPoint);
         }
         
         private void SetActiveProjectile()
         {
-            Projectile.SetActive(true);
+            ProjectileView.gameObject.SetActive(true);
         }
         
         private void SetTargetPosition()
@@ -66,7 +67,7 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
         
         private void SetProjectileArrivalTime()
         {
-            ProjectileArrivalTime = Vector3.Distance(Projectile.transform.position, TargetPosition) / DamageableView.DamageableSo.RangedDamageableAttackData.ProjectileSpeed;
+            ProjectileArrivalTime = Vector3.Distance(ProjectileView.transform.position, TargetPosition) / DamageableView.DamageableSo.RangedDamageableAttackData.ProjectileSpeed;
         }
     }
 }

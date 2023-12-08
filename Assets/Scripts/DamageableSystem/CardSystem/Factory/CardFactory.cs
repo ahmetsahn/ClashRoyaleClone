@@ -31,8 +31,7 @@ namespace DamageableSystem.CardSystem.Factory
         
         public CardView Create(CardType cardType)
         {
-            var card = _instantiator.InstantiatePrefabForComponent<CardView>(_cardTypeCardPrefabDictionary[cardType]); 
-            return card;
+            return _instantiator.InstantiatePrefabForComponent<CardView>(_cardTypeCardPrefabDictionary[cardType]);
         }
     }
 }

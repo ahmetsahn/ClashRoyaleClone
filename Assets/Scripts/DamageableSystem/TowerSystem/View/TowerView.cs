@@ -37,6 +37,7 @@ namespace DamageableSystem.TowerSystem.View
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
+            
             if (IsDead)
             {
                 OnSwitchState?.Invoke(TowerStateType.Death);

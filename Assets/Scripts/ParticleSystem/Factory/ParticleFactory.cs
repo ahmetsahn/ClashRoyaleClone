@@ -25,8 +25,7 @@ namespace ParticleSystem.Factory
         }
         public ParticleView Create(ParticleType particleType)
         {
-            var particle = _instantiator.InstantiatePrefabForComponent<ParticleView>(_particlePrefabDictionary[particleType]);
-            return particle;
+            return _instantiator.InstantiatePrefabForComponent<ParticleView>(_particlePrefabDictionary[particleType]);
         }
     }
 }

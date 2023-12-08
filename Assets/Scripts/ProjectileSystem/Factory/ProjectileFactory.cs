@@ -27,8 +27,7 @@ namespace ProjectileSystem.Factory
         
         public ProjectileView Create(ProjectileType projectileType)
         {
-            var projectile = _instantiator.InstantiatePrefabForComponent<ProjectileView>(_cardTypeCardPrefabDictionary[projectileType]);
-            return projectile;
+            return _instantiator.InstantiatePrefabForComponent<ProjectileView>(_cardTypeCardPrefabDictionary[projectileType]);
         }
     }
 }
