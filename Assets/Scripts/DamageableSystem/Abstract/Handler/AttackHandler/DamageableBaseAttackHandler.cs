@@ -1,6 +1,7 @@
 using DamageableSystem.Abstract.View;
 using Signal;
 using UnityEngine;
+using Zenject;
 
 namespace DamageableSystem.Abstract.Handler.AttackHandler
 {
@@ -13,6 +14,15 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
         protected ParticlePoolSignals ParticlePoolSignals;
         
         protected GameObject AttackParticle;
+        
+        [Inject]
+        private void Construct(
+            DamageableSignals damageableSignals,
+            ParticlePoolSignals particlePoolSignals)
+        {
+            DamageableSignals = damageableSignals;
+            ParticlePoolSignals = particlePoolSignals;
+        }
         
         protected virtual void ControlAndDamageTheTarget()
         {

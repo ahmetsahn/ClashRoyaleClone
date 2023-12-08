@@ -9,10 +9,11 @@ namespace DamageableSystem.TowerSystem.Installer.Abstract
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<TowerRotationHandler>().AsSingle();
-            Container.BindInterfacesTo<TowerTargetDetectionHandler>().AsSingle();
             Container.Bind<TowerIdleState>().AsSingle();
             Container.Bind<TowerAttackState>().AsSingle();
+            
+            Container.BindInterfacesTo<TowerRotationHandler>().AsSingle();
+            Container.BindInterfacesTo<TowerTargetDetectionHandler>().AsSingle();
         }
     }
 }

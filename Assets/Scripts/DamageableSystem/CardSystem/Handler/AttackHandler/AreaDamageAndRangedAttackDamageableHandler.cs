@@ -12,15 +12,9 @@ namespace DamageableSystem.CardSystem.Handler.AttackHandler
     {
         [Inject]
         private void Construct(
-            TroopCardView troopCardView,
-            DamageableSignals damageableSignals,
-            ProjectilePoolSignals projectilePoolSignals,
-            ParticlePoolSignals particlePoolSignals)
+            TroopCardView troopCardView)
         {
             DamageableView = troopCardView;
-            DamageableSignals = damageableSignals;
-            ProjectilePoolSignals = projectilePoolSignals;
-            ParticlePoolSignals = particlePoolSignals;
         }
 
         protected override void ThrowProjectile()

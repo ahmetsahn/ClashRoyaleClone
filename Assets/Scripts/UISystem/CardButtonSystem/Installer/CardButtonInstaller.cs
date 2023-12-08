@@ -7,9 +7,10 @@ namespace UISystem.CardButtonSystem.Installer
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<CardButtonStateManager>().AsSingle();
             Container.Bind<CardButtonSelectionState>().AsSingle();
             Container.Bind<CardButtonPlayState>().AsSingle();
+            
+            Container.BindInterfacesTo<CardButtonStateManager>().AsSingle();
         }
     }
 }

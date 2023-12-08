@@ -1,23 +1,25 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using DamageableSystem.CardSystem.View.Abstract;
 using Data.ScriptableObject;
 using Enums;
 using Signal;
 using UnityEngine;
-using Zenject;
+using Random = UnityEngine.Random;
 
 
 namespace SpawnerSystem
 {
-    public class AICardSpawner : MonoBehaviour
+    public class AICardSpawner : IDisposable
     {
-        [SerializeField]
-        private SpawnerSo spawnerSo;
+        private readonly SpawnerSo _spawnerSo;
         
-        private ButtonSignals _buttonSignals;
+        private readonly ButtonSignals _buttonSignals;
         
-        private CardPoolSignals _cardPoolSignals;
+        private readonly CardPoolSignals _cardPoolSignals;
         
-        private CoreGameSignals _coreGameSignals;
+        private readonly CoreGameSignals _coreGameSignals;
         
         private readonly CardType[] _cardTypes = new CardType[4];
 
@@ -28,22 +30,24 @@ namespace SpawnerSystem
             new Vector3(3.85f, 0, -34.25f)
         };
         
-        [Inject]
-        public void Construct(
+        private readonly CancellationTokenSource _cancellationTokenSource;
+        
+        public AICardSpawner(
             ButtonSignals buttonSignals,
             CardPoolSignals cardPoolSignals,
-            CoreGameSignals coreGameSignals)
+            CoreGameSignals coreGameSignals,
+            SpawnerSo spawnerSo)
         {
             _buttonSignals = buttonSignals;
             _cardPoolSignals = cardPoolSignals;
             _coreGameSignals = coreGameSignals;
-        }
-
-        private void OnEnable()
-        {
+            _spawnerSo = spawnerSo;
+            
+            _cancellationTokenSource = new CancellationTokenSource();
+            
             SubscribeEvents();
         }
-
+        
         private void SubscribeEvents()
         {
             _buttonSignals.OnAddToAICardList += OnAddToAICardList;
@@ -64,12 +68,16 @@ namespace SpawnerSystem
             }
         }
         
-        private void SpawnCard()
+        private async void SpawnCard()
         {
-            int cardRandomIndex = Random.Range(0, _cardTypes.Length);
-            int positionRandomIndex = Random.Range(0, _cardSpawnPoints.Length);
-            CardView card = _cardPoolSignals.OnGetCard(_cardTypes[cardRandomIndex]);
-            InitializeCard(card, positionRandomIndex);
+            while (!_cancellationTokenSource.Token.IsCancellationRequested)
+            {
+                int cardRandomIndex = Random.Range(0, _cardTypes.Length);
+                int positionRandomIndex = Random.Range(0, _cardSpawnPoints.Length);
+                CardView card = _cardPoolSignals.OnGetCard(_cardTypes[cardRandomIndex]);
+                InitializeCard(card, positionRandomIndex);
+                await Task.Delay(TimeSpan.FromSeconds(_spawnerSo.SpawnerData.SpawnInterval));
+            }
         }
 
         private void InitializeCard(CardView card, int positionRandomIndex)
@@ -82,16 +90,22 @@ namespace SpawnerSystem
             card.gameObject.SetActive(true);
         }
 
-        private void StartSpawnCard()
+        private async void StartSpawnCard()
         {
-            InvokeRepeating(nameof(SpawnCard), spawnerSo.SpawnerData.TimeToStartSpawn, spawnerSo.SpawnerData.SpawnInterval);
+            await Task.Delay(TimeSpan.FromSeconds(_spawnerSo.SpawnerData.TimeToStartSpawn));
+
+            SpawnCard();
         }
         
         private void StopSpawnCard()
         {
-            CancelInvoke(nameof(SpawnCard));
+            CancelToken();
         }
         
+        private void CancelToken()
+        {
+            _cancellationTokenSource.Cancel();
+        }
         private void UnsubscribeEvents()
         {
             _buttonSignals.OnAddToAICardList -= OnAddToAICardList;
@@ -99,9 +113,10 @@ namespace SpawnerSystem
             _coreGameSignals.OnGameEnd -= StopSpawnCard;
         }
 
-        private void OnDisable()
+        public void Dispose()
         {
             UnsubscribeEvents();
+            CancelToken();
         }
     }
 }

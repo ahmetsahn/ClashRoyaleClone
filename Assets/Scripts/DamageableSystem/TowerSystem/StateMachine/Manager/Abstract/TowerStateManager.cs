@@ -17,6 +17,15 @@ namespace DamageableSystem.TowerSystem.StateMachine.Manager.Abstract
 
         protected DamageableBaseState CurrentState;
         
+        [Inject]
+        public void Construct(
+            TowerIdleState towerIdleState,
+            TowerAttackState towerAttackState)
+        {
+            TowerIdleState = towerIdleState;
+            TowerAttackState = towerAttackState;
+        }
+        
         public void Initialize()
         {
             SubscribeEvents();

@@ -11,15 +11,9 @@ namespace DamageableSystem.TowerSystem.Handler.AttackHandler
         
         [Inject]
         public void Construct(
-            TowerView towerView,
-            DamageableSignals damageableSignals,
-            ProjectilePoolSignals projectilePoolSignals,
-            ParticlePoolSignals particlePoolSignals)
+            TowerView towerView)
         {
             DamageableView = towerView;
-            DamageableSignals = damageableSignals;
-            ProjectilePoolSignals = projectilePoolSignals;
-            ParticlePoolSignals = particlePoolSignals;
         }
 
         private void OnEnable()

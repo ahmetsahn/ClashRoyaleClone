@@ -18,13 +18,9 @@ namespace DamageableSystem.CardSystem.Handler.AttackHandler
         
         [Inject]
         private void Construct(
-            BuildingCardView buildingCardView,
-            DamageableSignals damageableSignals,
-            ParticlePoolSignals particlePoolSignals)
+            BuildingCardView buildingCardView)
         {
             DamageableView = buildingCardView;
-            DamageableSignals = damageableSignals;
-            ParticlePoolSignals = particlePoolSignals;
         }
 
         private void OnEnable()

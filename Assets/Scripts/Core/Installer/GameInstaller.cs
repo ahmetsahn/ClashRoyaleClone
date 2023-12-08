@@ -1,5 +1,6 @@
 using DamageableSystem.CardSystem.Factory;
 using DamageableSystem.CardSystem.View.Abstract;
+using Data.ScriptableObject;
 using Enums;
 using InputSystem;
 using LevelSystem.Installer;
@@ -22,6 +23,9 @@ namespace Core.Installer
         [SerializeField] 
         private Transform[] layers;
         
+        [SerializeField]
+        private SpawnerSo spawnerSo;
+        
         public override void InstallBindings()
         {
             Container.BindFactory<CardType, CardView, CardView.Factory>().FromFactory<CardFactory>();
@@ -32,6 +36,7 @@ namespace Core.Installer
             Container.BindInterfacesTo<UIManager>().AsSingle();
             Container.BindInterfacesTo<InputHandler>().AsSingle();
             Container.BindInterfacesTo<CardSpawner>().AsSingle();
+            Container.BindInterfacesTo<AICardSpawner>().AsSingle().WithArguments(spawnerSo);
             
             Container.Bind<CardPool>().AsSingle().NonLazy();
             Container.Bind<ProjectilePool>().AsSingle().NonLazy();

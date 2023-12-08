@@ -12,6 +12,8 @@ namespace DamageableSystem.CardSystem.StateMachine.States
             TroopCardView troopCardView)
         {
             CardView = troopCardView;
+            
+            SubscribeEvents();
         }
         protected override void ExitInitializationState()
         {

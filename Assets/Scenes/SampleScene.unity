@@ -321,6 +321,7 @@ MonoBehaviour:
   layers:
   - {fileID: 1991762769}
   - {fileID: 1420110316}
+  spawnerSo: {fileID: 11400000, guid: 0e4a53b315b56764bbaf34033cda501a, type: 2}
 --- !u!1 &1420110315
 GameObject:
   m_ObjectHideFlags: 0

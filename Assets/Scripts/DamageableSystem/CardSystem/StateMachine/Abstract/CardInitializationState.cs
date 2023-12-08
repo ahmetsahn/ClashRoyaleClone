@@ -6,18 +6,13 @@ using Zenject;
 
 namespace DamageableSystem.CardSystem.StateMachine.Abstract
 {
-    public abstract class CardInitializationState : DamageableBaseState, IInitializable, IDisposable
+    public abstract class CardInitializationState : DamageableBaseState, IDisposable
     {
         protected CardView CardView;
 
         private Sequence _mySequence;
         
-        public void Initialize()
-        {
-            SubscribeEvents();
-        }
-        
-        private void SubscribeEvents()
+        protected void SubscribeEvents()
         {
             CardView.OnResetCard += KillSequence;
             CardView.CoreGameSignals.OnGameEnd += KillSequence;
@@ -38,7 +33,7 @@ namespace DamageableSystem.CardSystem.StateMachine.Abstract
 
         private void KillSequence()
         {
-            _mySequence.Kill();
+            _mySequence?.Kill();
         }
         
         private void UnsubscribeEvents()

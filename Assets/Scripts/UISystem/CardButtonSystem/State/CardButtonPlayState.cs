@@ -7,23 +7,18 @@ namespace UISystem.CardButtonSystem.State
     {
         private readonly CardButtonView _cardButtonView;
         
-        private readonly ButtonSignals _buttonSignals;
-        
-        
         public CardButtonPlayState(
-            CardButtonView cardButtonView,
-            ButtonSignals buttonSignals)
+            CardButtonView cardButtonView)
         {
             _cardButtonView = cardButtonView;
-            _buttonSignals = buttonSignals;
         }
 
         public override void OnButtonClick()
         {
-            _buttonSignals.OnIsSelectedCard?.Invoke(true);
-            _buttonSignals.OnSetSelectedCardButton?.Invoke(_cardButtonView.CardButtonSo.CardType);
-            _buttonSignals.OnSetSelectedCardElixirCost?.Invoke(_cardButtonView.CardButtonSo.UICardElixirData.ElixirCost);
-            _buttonSignals.OnSetDeActiveAllCardPreview?.Invoke();
+             ButtonSignals.OnIsSelectedCard?.Invoke(true);
+             ButtonSignals.OnSetSelectedCardButton?.Invoke(_cardButtonView.CardButtonSo.CardType);
+             ButtonSignals.OnSetSelectedCardElixirCost?.Invoke(_cardButtonView.CardButtonSo.UICardElixirData.ElixirCost);
+             ButtonSignals.OnSetDeActiveAllCardPreview?.Invoke();
             _cardButtonView.CardPreview.SetActive(true);
         }
     }

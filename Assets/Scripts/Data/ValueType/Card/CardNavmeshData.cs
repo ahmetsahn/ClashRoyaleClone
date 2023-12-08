@@ -3,7 +3,7 @@ using System;
 namespace Data.ValueType.Card
 {
     [Serializable]
-    public class CardNavmeshData
+    public struct CardNavmeshData
     {
         public float NavmeshRadius;
         public float NavmeshHeight;

@@ -9,13 +9,14 @@ namespace DamageableSystem.CardSystem.Installer
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<BuildingCardInitializationState>().AsSingle();
             Container.Bind<BuildingCardIdleState>().AsSingle();
             Container.Bind<BuildingCardAttackState>().AsSingle();
             Container.Bind<BuildingCardDeathState>().AsSingle();
             
             Container.BindInterfacesTo<BuildingCardTargetDetectionHandler>().AsSingle();
             Container.BindInterfacesTo<BuildingCardStateManager>().AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<BuildingCardInitializationState>().AsSingle();
         }
     }
 }

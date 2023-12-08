@@ -9,7 +9,8 @@ namespace DamageableSystem.TowerSystem.Handler.MovementHandler
     {
         private TowerView TowerView => (TowerView) DamageableView;
         
-        public TowerRotationHandler(TowerView towerView)
+        public TowerRotationHandler(
+            TowerView towerView)
         {
             DamageableView = towerView;
         }

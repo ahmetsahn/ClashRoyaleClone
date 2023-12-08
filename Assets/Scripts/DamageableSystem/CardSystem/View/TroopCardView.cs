@@ -20,7 +20,6 @@ namespace DamageableSystem.CardSystem.View
         public UnityAction<TroopCardStateType> OnSwitchState;
         
         public UnityAction OnRotateToTarget;
-        
         public UnityAction OnInitializeTroopCard;
         
         protected override void InitializeDamageable()
@@ -56,6 +55,7 @@ namespace DamageableSystem.CardSystem.View
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
+            
             if (IsDead)
             {
                 OnSwitchState?.Invoke(TroopCardStateType.Death);

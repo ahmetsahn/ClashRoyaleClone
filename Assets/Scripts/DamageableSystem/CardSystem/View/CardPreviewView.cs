@@ -28,9 +28,9 @@ namespace DamageableSystem.CardSystem.View
 
         private const string EmissionColor = "_EmissionColor";
         
-        private bool _isRed; 
-        
         private InputSignals _inputSignals;
+        
+        private bool _isRed; 
         
         [Inject]
         private void Construct(

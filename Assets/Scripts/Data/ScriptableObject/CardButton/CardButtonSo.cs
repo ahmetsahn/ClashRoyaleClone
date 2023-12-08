@@ -8,6 +8,7 @@ namespace Data.ScriptableObject.CardButton
     public class CardButtonSo : UnityEngine.ScriptableObject
     {
         public CardType CardType;
+        
         public UICardElixirData UICardElixirData;
     }
 }

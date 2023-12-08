@@ -18,6 +18,7 @@ namespace DamageableSystem.CardSystem.Handler.AnimationHandler
             TroopCardView troopCardView)
         {
             _troopCardView = troopCardView;
+            
             SubscribeEvents();
         }
         

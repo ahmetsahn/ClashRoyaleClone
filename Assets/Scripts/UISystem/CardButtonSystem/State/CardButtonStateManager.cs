@@ -36,6 +36,7 @@ namespace UISystem.CardButtonSystem.State
         private void SubscribeEvents()
         {
             _cardButtonView.Button.onClick.AddListener(OnButtonClick);
+            
             _buttonSignals.OnSwitchState += OnSwitchState;
         }
 
@@ -57,6 +58,7 @@ namespace UISystem.CardButtonSystem.State
         private void UnsubscribeEvents()
         {
             _cardButtonView.Button.onClick.RemoveListener(OnButtonClick);
+            
             _buttonSignals.OnSwitchState -= OnSwitchState;
         }
 

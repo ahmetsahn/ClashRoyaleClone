@@ -12,7 +12,6 @@ namespace DamageableSystem.CardSystem.Installer
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<TroopCardInitializationState>().AsSingle();
             Container.Bind<TroopCardIdleState>().AsSingle();
             Container.Bind<TroopCardAttackState>().AsSingle();
             Container.Bind<TroopCardDeathState>().AsSingle();
@@ -22,6 +21,7 @@ namespace DamageableSystem.CardSystem.Installer
             Container.BindInterfacesTo<TroopCardRotationHandler>().AsSingle();
             Container.BindInterfacesTo<TroopCardStateManager>().AsSingle();
             
+            Container.BindInterfacesAndSelfTo<TroopCardInitializationState>().AsSingle();
             Container.BindInterfacesAndSelfTo<TroopCardMovementState>().AsSingle();
         }
     }

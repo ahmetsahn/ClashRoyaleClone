@@ -6,21 +6,17 @@ namespace UISystem.CardButtonSystem.State
     public class CardButtonSelectionState : CardButtonBaseState
     {
         private readonly CardButtonView _cardButtonView;
-        
-        private readonly ButtonSignals _buttonSignals;
 
         public CardButtonSelectionState(
-            CardButtonView cardButtonView,
-            ButtonSignals buttonSignals)
+            CardButtonView cardButtonView)
         {
             _cardButtonView = cardButtonView;
-            _buttonSignals = buttonSignals;
         }
         
         public override void OnButtonClick()
         {
-            _buttonSignals.OnSelectedCardButton?.Invoke(_cardButtonView);
-            _buttonSignals.OnSetInteractableTwoCardButtons?.Invoke();
+            ButtonSignals.OnSelectedCardButton?.Invoke(_cardButtonView);
+            ButtonSignals.OnSetInteractableTwoCardButtons?.Invoke();
         }
     }
 }

@@ -9,7 +9,8 @@ namespace DamageableSystem.CardSystem.Handler.MovementHandler
     {
         private TroopCardView TroopCardView => (TroopCardView) DamageableView;
         
-        public TroopCardRotationHandler(TroopCardView troopCardView)
+        public TroopCardRotationHandler(
+            TroopCardView troopCardView)
         {
             DamageableView = troopCardView;
         }

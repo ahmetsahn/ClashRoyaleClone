@@ -18,7 +18,8 @@ namespace UISystem
         private ButtonSignals _buttonSignals;
         
         [Inject]
-        private void Construct(ButtonSignals buttonSignals)
+        private void Construct(
+            ButtonSignals buttonSignals)
         {
             _buttonSignals = buttonSignals;
         }
@@ -26,11 +27,6 @@ namespace UISystem
         private void OnEnable()
         {
             SubscribeEvents();
-        }
-        
-        private void OnDisable()
-        {
-            UnsubscribeEvents();
         }
         
         private void SubscribeEvents()
@@ -85,6 +81,11 @@ namespace UISystem
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+        
+        private void OnDisable()
+        {
+            UnsubscribeEvents();
         }
     }
 }

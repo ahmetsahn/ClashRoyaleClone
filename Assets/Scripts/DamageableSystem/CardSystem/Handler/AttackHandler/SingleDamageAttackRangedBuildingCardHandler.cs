@@ -9,15 +9,9 @@ namespace DamageableSystem.CardSystem.Handler.AttackHandler
     {
         [Inject]
         private void Construct(
-            BuildingCardView buildingCardView,
-            DamageableSignals damageableSignals,
-            ProjectilePoolSignals projectilePoolSignals,
-            ParticlePoolSignals particlePoolSignals)
+            BuildingCardView buildingCardView)
         {
             DamageableView = buildingCardView;
-            DamageableSignals = damageableSignals;
-            ProjectilePoolSignals = projectilePoolSignals;
-            ParticlePoolSignals = particlePoolSignals;
         }
     }
 }

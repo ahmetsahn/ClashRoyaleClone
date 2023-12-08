@@ -1,6 +1,7 @@
 using Extension;
 using Signal;
 using UnityEngine;
+using Zenject;
 
 namespace DamageableSystem.Abstract.Handler.AttackHandler
 {
@@ -16,9 +17,21 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
         protected GameObject Projectile;
         
         protected float ProjectileArrivalTime;
+        
+        [Inject]
+        private void Construct(
+            ProjectilePoolSignals projectilePoolSignals)
+        {
+            ProjectilePoolSignals = projectilePoolSignals;
+        }
 
         protected virtual void ThrowProjectile()
         {
+            if(DamageableView.CurrentTarget == null)
+            {
+                return;
+            }
+            
             SetProjectile();
             SetProjectilePosition();
             SetActiveProjectile();

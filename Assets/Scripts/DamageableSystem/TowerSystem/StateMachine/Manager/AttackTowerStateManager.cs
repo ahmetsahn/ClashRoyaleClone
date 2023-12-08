@@ -11,14 +11,10 @@ namespace DamageableSystem.TowerSystem.StateMachine.Manager
         
         public AttackTowerStateManager(
             TowerView towerView,
-            TowerIdleState towerIdleState,
-            TowerAttackState towerAttackState,
             AttackTowerDeathState attackTowerDeathState)
         {
             TowerView = towerView;
-             
-            TowerIdleState = towerIdleState;
-            TowerAttackState = towerAttackState;
+            
             _attackTowerDeathState = attackTowerDeathState;
         }
         

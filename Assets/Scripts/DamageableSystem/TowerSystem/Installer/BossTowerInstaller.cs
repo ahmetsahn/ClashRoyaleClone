@@ -9,7 +9,9 @@ namespace DamageableSystem.TowerSystem.Installer
         public override void InstallBindings()
         {
             base.InstallBindings();
+            
             Container.Bind<BossTowerDeathState>().AsSingle();
+            
             Container.BindInterfacesTo<BossTowerStateManager>().AsSingle();
         }
     }
