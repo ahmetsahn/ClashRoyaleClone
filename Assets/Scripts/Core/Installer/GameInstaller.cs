@@ -36,7 +36,6 @@ namespace Core.Installer
             Container.BindInterfacesTo<UIManager>().AsSingle();
             Container.BindInterfacesTo<InputHandler>().AsSingle();
             Container.BindInterfacesTo<CardSpawner>().AsSingle();
-            Container.BindInterfacesTo<AICardSpawner>().AsSingle().WithArguments(spawnerSo);
             
             Container.Bind<CardPool>().AsSingle().NonLazy();
             Container.Bind<ProjectilePool>().AsSingle().NonLazy();

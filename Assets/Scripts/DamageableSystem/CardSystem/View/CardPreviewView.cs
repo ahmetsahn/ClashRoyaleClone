@@ -44,9 +44,9 @@ namespace DamageableSystem.CardSystem.View
             transform.transform.position = Vector3.zero;
         }
         
-        private void ResetFlag()
+        private void SetFlag(bool value)
         {
-            _isRed = false;
+            _isRed = value;
         }
         
         private void SetMaterialsColorRed()
@@ -58,13 +58,9 @@ namespace DamageableSystem.CardSystem.View
             
             _inputSignals.OnEnableInput?.Invoke(false);
             
-            foreach (Material material in materials)
-            {
-                material.color = materialRedColor;
-                material.SetColor(EmissionColor, materialEmissionRedColor);
-            }
+            SetColorOfMaterials(materialRedColor, materialEmissionRedColor);
             
-            _isRed = true;
+            SetFlag(true);
         }
         
         private void SetMaterialsColorDefault()
@@ -76,15 +72,20 @@ namespace DamageableSystem.CardSystem.View
             
             _inputSignals.OnEnableInput?.Invoke(true);
             
-            foreach (Material material in materials)
-            {
-                material.color = materialDefaultColor;
-                material.SetColor(EmissionColor, materialEmissionDefaultColor);
-            }
+            SetColorOfMaterials(materialDefaultColor, materialEmissionDefaultColor);
             
-            _isRed = false;
+            SetFlag(false);
         }
 
+        private void SetColorOfMaterials(Color baseMapColor, Color emissionColor)
+        {
+            foreach (Material material in materials)
+            {
+                material.color = baseMapColor;
+                material.SetColor(EmissionColor, emissionColor);
+            }
+        }
+        
         private void Update()
         {
             transform.MatchPositionToRaycastHit();
@@ -96,9 +97,13 @@ namespace DamageableSystem.CardSystem.View
             Collider[] colliders = Physics.OverlapSphere(transform.position, overlapSphereRadius);
             foreach (Collider collider in colliders)
             {
-                if (!collider.TryGetComponent(out DamageableView damageableView)) continue;
+                if (!collider.TryGetComponent(out DamageableView damageableView))
+                {
+                    continue;
+                }
+                
                 SetMaterialsColorRed();
-                _isRed = true;
+                SetFlag(true);
                 return;
             }
 
@@ -109,7 +114,7 @@ namespace DamageableSystem.CardSystem.View
         {
             SetMaterialsColorDefault();
             ResetTransformPosition();
-            ResetFlag();
+            SetFlag(false);
         }
 
         private void OnDrawGizmos()

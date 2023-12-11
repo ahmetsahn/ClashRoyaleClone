@@ -10,7 +10,6 @@ namespace DamageableSystem.CardSystem.StateMachine.Abstract
         
         public override void EnterState()
         {
-            CardView.OnResetCard?.Invoke();
             CardView.OnSetAttackColliderEnabled?.Invoke(false);
             CardView.CardPoolSignals.OnReturnCardToPool?.Invoke(CardView);
         }

@@ -30,6 +30,8 @@ namespace DamageableSystem.CardSystem.Handler.PhysicHandler
                 return;
             }
             
+            TroopCardView.OnSetNewTarget?.Invoke();
+            
             TroopCardView.OnSwitchState?.Invoke(TroopCardStateType.Attack);
         }
     }

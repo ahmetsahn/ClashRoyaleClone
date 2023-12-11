@@ -6,20 +6,22 @@ using Data.ScriptableObject;
 using Enums;
 using Signal;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 
 namespace SpawnerSystem
 {
-    public class AICardSpawner : IDisposable
+    public class AICardSpawner : MonoBehaviour
     {
-        private readonly SpawnerSo _spawnerSo;
+        [SerializeField]
+        private SpawnerSo spawnerSo;
         
-        private readonly ButtonSignals _buttonSignals;
+        private ButtonSignals _buttonSignals;
         
-        private readonly CardPoolSignals _cardPoolSignals;
+        private CardPoolSignals _cardPoolSignals;
         
-        private readonly CoreGameSignals _coreGameSignals;
+        private CoreGameSignals _coreGameSignals;
         
         private readonly CardType[] _cardTypes = new CardType[4];
 
@@ -30,32 +32,30 @@ namespace SpawnerSystem
             new Vector3(3.85f, 0, -34.25f)
         };
         
-        private readonly CancellationTokenSource _cancellationTokenSource;
-        
-        public AICardSpawner(
+        [Inject]
+        private void Construct(
             ButtonSignals buttonSignals,
             CardPoolSignals cardPoolSignals,
-            CoreGameSignals coreGameSignals,
-            SpawnerSo spawnerSo)
+            CoreGameSignals coreGameSignals)
         {
             _buttonSignals = buttonSignals;
             _cardPoolSignals = cardPoolSignals;
             _coreGameSignals = coreGameSignals;
-            _spawnerSo = spawnerSo;
-            
-            _cancellationTokenSource = new CancellationTokenSource();
-            
+        }
+
+        private void OnEnable()
+        {
             SubscribeEvents();
         }
-        
+
         private void SubscribeEvents()
         {
-            _buttonSignals.OnAddToAICardList += OnAddToAICardList;
+            _buttonSignals.OnAddToAICardArray += OnAddToAICardArray;
             _coreGameSignals.OnPlayStart += StartSpawnCard;
-            _coreGameSignals.OnGameEnd += StopSpawnCard;
+            _coreGameSignals.OnGameEnd += OnResetCardArray;
         }
         
-        private void OnAddToAICardList(CardType cardType)
+        private void OnAddToAICardArray(CardType cardType)
         {
             for (int i = 0; i < _cardTypes.Length; i++)
             {
@@ -68,16 +68,20 @@ namespace SpawnerSystem
             }
         }
         
-        private async void SpawnCard()
+        private void OnResetCardArray()
         {
-            while (!_cancellationTokenSource.Token.IsCancellationRequested)
+            for (int i = 0; i < _cardTypes.Length; i++)
             {
-                int cardRandomIndex = Random.Range(0, _cardTypes.Length);
-                int positionRandomIndex = Random.Range(0, _cardSpawnPoints.Length);
-                CardView card = _cardPoolSignals.OnGetCard(_cardTypes[cardRandomIndex]);
-                InitializeCard(card, positionRandomIndex);
-                await Task.Delay(TimeSpan.FromSeconds(_spawnerSo.SpawnerData.SpawnInterval));
+                _cardTypes[i] = CardType.None;
             }
+        }
+        
+        private void SpawnCard()
+        {
+            int cardRandomIndex = Random.Range(0, _cardTypes.Length);
+            int positionRandomIndex = Random.Range(0, _cardSpawnPoints.Length);
+            CardView card = _cardPoolSignals.OnGetCard(_cardTypes[cardRandomIndex]);
+            InitializeCard(card, positionRandomIndex);
         }
 
         private void InitializeCard(CardView card, int positionRandomIndex)
@@ -90,33 +94,21 @@ namespace SpawnerSystem
             card.gameObject.SetActive(true);
         }
 
-        private async void StartSpawnCard()
+        private void StartSpawnCard()
         {
-            await Task.Delay(TimeSpan.FromSeconds(_spawnerSo.SpawnerData.TimeToStartSpawn));
-
-            SpawnCard();
+            InvokeRepeating(nameof(SpawnCard), spawnerSo.SpawnerData.TimeToStartSpawn, spawnerSo.SpawnerData.SpawnInterval);
         }
         
-        private void StopSpawnCard()
-        {
-            CancelToken();
-        }
-        
-        private void CancelToken()
-        {
-            _cancellationTokenSource.Cancel();
-        }
         private void UnsubscribeEvents()
         {
-            _buttonSignals.OnAddToAICardList -= OnAddToAICardList;
+            _buttonSignals.OnAddToAICardArray -= OnAddToAICardArray;
             _coreGameSignals.OnPlayStart -= StartSpawnCard;
-            _coreGameSignals.OnGameEnd -= StopSpawnCard;
+            _coreGameSignals.OnGameEnd -= OnResetCardArray;
         }
 
-        public void Dispose()
+        private void OnDisable()
         {
             UnsubscribeEvents();
-            CancelToken();
         }
     }
 }

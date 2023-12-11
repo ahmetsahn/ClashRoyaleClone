@@ -18,7 +18,7 @@ MonoBehaviour:
   isAreaDamageAttack: 1
   isRotatable: 1
   DamageableHealthData:
-    MaxHealth: 250
+    MaxHealth: 200
   DamageablePhysicData:
     TargetDetectionRange: 28
   DamageableAttackData:

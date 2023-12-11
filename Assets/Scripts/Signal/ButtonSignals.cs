@@ -18,7 +18,7 @@ namespace Signal
         public UnityAction<int> OnCheckButtonInteractable;
         
         public UnityAction<CardType> OnSetSelectedCardButton;
-        public UnityAction<CardType> OnAddToAICardList;
+        public UnityAction<CardType> OnAddToAICardArray;
         
         public UnityAction<CardButtonStateType> OnSwitchState;
         

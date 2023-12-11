@@ -1,7 +1,9 @@
+using System.Threading;
 using DamageableSystem.Abstract.View;
 using Enums;
 using PoolSystem;
 using Signal;
+using Unity.VisualScripting;
 using UnityEngine.Events;
 using Zenject;
 
@@ -13,8 +15,9 @@ namespace DamageableSystem.CardSystem.View.Abstract
         
         public CardPoolSignals CardPoolSignals;
         
-        public UnityAction OnResetCard;
         public UnityAction OnSetInitialRotation;
+        
+        public CancellationTokenSource CancellationTokenSource; 
         
         [Inject]
         private void Construct(
@@ -29,6 +32,24 @@ namespace DamageableSystem.CardSystem.View.Abstract
         {
             base.InitializeDamageable();
             OnSetInitialRotation?.Invoke();
+            InitializeToken();
+        }
+        
+        private void InitializeToken()
+        {
+            CancellationTokenSource = new CancellationTokenSource();
+        }
+        
+        private void DestroyToken()
+        {
+            if(CancellationTokenSource == null)
+            {
+                return;
+            }
+            
+            CancellationTokenSource.Cancel();
+            CancellationTokenSource.Dispose();
+            CancellationTokenSource = null;
         }
 
         protected override void SubscribeEvents()
@@ -46,6 +67,12 @@ namespace DamageableSystem.CardSystem.View.Abstract
         {
             base.UnsubscribeEvents();
             CoreGameSignals.OnGameEnd -= OnReturnToPool;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            DestroyToken();
         }
 
         public class Factory : PlaceholderFactory<CardType, CardView> { }

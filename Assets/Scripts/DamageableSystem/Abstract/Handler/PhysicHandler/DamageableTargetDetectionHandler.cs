@@ -25,8 +25,6 @@ namespace DamageableSystem.Abstract.Handler.PhysicHandler
             Collider[] targetColliders = Physics.OverlapSphere(DamageableView.Transform.position, DamageableView.DamageableSo.DamageablePhysicData.TargetDetectionRange);
             float closestDistance = Mathf.Infinity;
             
-            DamageableView.CurrentTarget = null;
-
             foreach (Collider targetCollider in targetColliders)
             {
                 if (!targetCollider.TryGetComponent(out IDamageable target))

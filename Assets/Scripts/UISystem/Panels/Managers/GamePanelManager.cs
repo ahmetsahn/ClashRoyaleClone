@@ -90,7 +90,7 @@ namespace UISystem.Panels.Managers
             _buttonDictionary[button].transform.DOMove(opponentCardsDestination[_currentButtonSelectIndex].position, 1f);
             _buttonDictionary[button].Button.interactable = false;
             
-            _buttonSignals.OnAddToAICardList?.Invoke(_buttonDictionary[button].CardType);
+            _buttonSignals.OnAddToAICardArray?.Invoke(_buttonDictionary[button].CardType);
             
             _currentButtonSelectIndex++;
 

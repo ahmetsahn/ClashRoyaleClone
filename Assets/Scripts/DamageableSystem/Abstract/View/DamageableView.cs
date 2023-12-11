@@ -79,7 +79,7 @@ namespace DamageableSystem.Abstract.View
             _damageableSignals.OnTargetDestroyed -= OnTargetDestroyed;
         }
         
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             UnsubscribeEvents();
         }
