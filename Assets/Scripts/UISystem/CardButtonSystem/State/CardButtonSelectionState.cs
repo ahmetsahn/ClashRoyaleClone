@@ -1,4 +1,6 @@
 using UISystem.CardButtonSystem.View;
+using UnityEngine;
+using Util;
 
 namespace UISystem.CardButtonSystem.State
 {
@@ -16,6 +18,7 @@ namespace UISystem.CardButtonSystem.State
         {
             ButtonSignals.OnSelectedCardButton?.Invoke(_cardButtonView);
             ButtonSignals.OnSetInteractableTwoCardButtons?.Invoke();
+            AudioSource.PlayClipAtPoint(_cardButtonView.ButtonClickSound, Utils.MainCamera.transform.position);
         }
     }
 }

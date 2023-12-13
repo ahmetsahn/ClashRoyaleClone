@@ -1,5 +1,7 @@
 using DamageableSystem.Abstract.StateMachine;
 using DamageableSystem.CardSystem.View;
+using UnityEngine;
+using Util;
 
 namespace DamageableSystem.CardSystem.StateMachine.States
 {
@@ -17,6 +19,7 @@ namespace DamageableSystem.CardSystem.StateMachine.States
         {
             base.EnterState();
             BuildingCardView.OnEnterAttackState?.Invoke();
+            BuildingCardView.AudioSource.Play();
         }
 
         public override void UpdateState()
@@ -38,6 +41,7 @@ namespace DamageableSystem.CardSystem.StateMachine.States
         {
             base.ExitState();
             BuildingCardView.OnExitAttackState?.Invoke();
+            BuildingCardView.AudioSource.Stop();
         }
     }
 }

@@ -25,8 +25,13 @@ namespace UISystem.CardButtonSystem.View
         [field: SerializeField]
         public GameObject CardPreview { get; private set; }
         
+        [field: SerializeField]
+        public AudioClip ButtonClickSound { get; private set; }
+        
         [SerializeField]
         private TextMeshProUGUI elixirText;
+        
+        public Transform Transform => transform;
         
         private InputSignals _inputSignals;
         

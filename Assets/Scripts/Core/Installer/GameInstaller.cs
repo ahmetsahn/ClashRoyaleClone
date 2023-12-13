@@ -20,6 +20,12 @@ namespace Core.Installer
 {
     public class GameInstaller : MonoInstaller
     {
+        [SerializeField]
+        private AudioClip leftClickSound;
+        
+        [SerializeField]
+        private AudioClip rightClickSound;
+        
         [SerializeField] 
         private Transform[] layers;
         
@@ -34,7 +40,7 @@ namespace Core.Installer
             
             Container.BindInterfacesTo<UIPanelHandler>().AsSingle().WithArguments(layers);
             Container.BindInterfacesTo<UIManager>().AsSingle();
-            Container.BindInterfacesTo<InputHandler>().AsSingle();
+            Container.BindInterfacesTo<InputHandler>().AsSingle().WithArguments(leftClickSound, rightClickSound);
             Container.BindInterfacesTo<CardSpawner>().AsSingle();
             
             Container.Bind<CardPool>().AsSingle().NonLazy();

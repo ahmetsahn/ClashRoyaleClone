@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: BarbarianKing
   m_EditorClassIdentifier: 
   CardType: 3
+  ButtonClickSound: {fileID: 8300000, guid: e51f854ad18495843a41893eb8b82cee, type: 3}
   UICardElixirData:
     ElixirCost: 4

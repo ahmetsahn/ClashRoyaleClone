@@ -10,16 +10,12 @@ namespace DamageableSystem.TowerSystem.StateMachine.States
     {
         private readonly CoreGameSignals _coreGameSignals;
         
-        private readonly UISignals _uiSignals;
-        
         public BossTowerDeathState(
             TowerView towerView, 
-            CoreGameSignals coreGameSignals,
-            UISignals uiSignals)
+            CoreGameSignals coreGameSignals)
         {
             TowerView = towerView;
             _coreGameSignals = coreGameSignals;
-            _uiSignals = uiSignals;
         }
 
         public override void EnterState()
@@ -30,10 +26,10 @@ namespace DamageableSystem.TowerSystem.StateMachine.States
             switch (TowerView.DamageableSide)
             {
                 case DamageableSideType.Friendly:
-                    _uiSignals.OnOpenPanel?.Invoke(UIPanelType.GameOverPanel, 0);
+                    _coreGameSignals.OnLose?.Invoke();
                     break;
                 case DamageableSideType.Enemy:
-                    _uiSignals.OnOpenPanel?.Invoke(UIPanelType.WinPanel, 0);
+                    _coreGameSignals.OnWin?.Invoke();
                     break;
                 default: throw new ArgumentOutOfRangeException();
             }

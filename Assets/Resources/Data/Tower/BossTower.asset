@@ -26,6 +26,7 @@ MonoBehaviour:
     AttackDamage: 30
     AttackRange: 6
     AttackSpeed: 10
+    AttackSound: {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
   CardInstallationData:
     InstallationTime: 0
   CardMovementData:

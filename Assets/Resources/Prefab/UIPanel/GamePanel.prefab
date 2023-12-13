@@ -808,6 +808,8 @@ MonoBehaviour:
   <Button>k__BackingField: {fileID: 8102129405086540195}
   <CooldownImage>k__BackingField: {fileID: 6389348209382335704}
   <CardPreview>k__BackingField: {fileID: 6895354682113906478}
+  <ButtonClickSound>k__BackingField: {fileID: 8300000, guid: e51f854ad18495843a41893eb8b82cee,
+    type: 3}
   elixirText: {fileID: 498639946795457235}
 --- !u!114 &274937558278376608
 MonoBehaviour:
@@ -1037,6 +1039,8 @@ MonoBehaviour:
   <Button>k__BackingField: {fileID: 8743802219042278511}
   <CooldownImage>k__BackingField: {fileID: 3287387924760710728}
   <CardPreview>k__BackingField: {fileID: 498023670925289703}
+  <ButtonClickSound>k__BackingField: {fileID: 8300000, guid: e51f854ad18495843a41893eb8b82cee,
+    type: 3}
   elixirText: {fileID: 5032678595208121864}
 --- !u!114 &2032367170535990833
 MonoBehaviour:
@@ -1231,6 +1235,8 @@ MonoBehaviour:
   <Button>k__BackingField: {fileID: 3711572982831193513}
   <CooldownImage>k__BackingField: {fileID: 281992622302853720}
   <CardPreview>k__BackingField: {fileID: 4687754088318954032}
+  <ButtonClickSound>k__BackingField: {fileID: 8300000, guid: e51f854ad18495843a41893eb8b82cee,
+    type: 3}
   elixirText: {fileID: 7912405355354103256}
 --- !u!114 &5513884196412089882
 MonoBehaviour:
@@ -1500,6 +1506,8 @@ MonoBehaviour:
   <Button>k__BackingField: {fileID: 2690551144674150525}
   <CooldownImage>k__BackingField: {fileID: 2147679384201432912}
   <CardPreview>k__BackingField: {fileID: 4302368949083660663}
+  <ButtonClickSound>k__BackingField: {fileID: 8300000, guid: e51f854ad18495843a41893eb8b82cee,
+    type: 3}
   elixirText: {fileID: 6438988918165443192}
 --- !u!114 &4315005501917809797
 MonoBehaviour:
@@ -1903,6 +1911,8 @@ MonoBehaviour:
   <Button>k__BackingField: {fileID: 6411561252189084858}
   <CooldownImage>k__BackingField: {fileID: 8201734270178146596}
   <CardPreview>k__BackingField: {fileID: 6563048521311538854}
+  <ButtonClickSound>k__BackingField: {fileID: 8300000, guid: e51f854ad18495843a41893eb8b82cee,
+    type: 3}
   elixirText: {fileID: 1610340379209880754}
 --- !u!114 &9010418280346532600
 MonoBehaviour:
@@ -2242,6 +2252,8 @@ MonoBehaviour:
   <Button>k__BackingField: {fileID: 852102920724025097}
   <CooldownImage>k__BackingField: {fileID: 8630811694511923526}
   <CardPreview>k__BackingField: {fileID: 1032924292464220147}
+  <ButtonClickSound>k__BackingField: {fileID: 8300000, guid: e51f854ad18495843a41893eb8b82cee,
+    type: 3}
   elixirText: {fileID: 4865557325390200767}
 --- !u!114 &3484011609023074140
 MonoBehaviour:
@@ -2823,6 +2835,8 @@ MonoBehaviour:
   <Button>k__BackingField: {fileID: 260475932700888201}
   <CooldownImage>k__BackingField: {fileID: 521983158142828665}
   <CardPreview>k__BackingField: {fileID: 27361218587507191}
+  <ButtonClickSound>k__BackingField: {fileID: 8300000, guid: e51f854ad18495843a41893eb8b82cee,
+    type: 3}
   elixirText: {fileID: 2668004397008285054}
 --- !u!114 &962792177868688324
 MonoBehaviour:
@@ -3454,6 +3468,8 @@ MonoBehaviour:
   <Button>k__BackingField: {fileID: 3180379349975203356}
   <CooldownImage>k__BackingField: {fileID: 801682736152597294}
   <CardPreview>k__BackingField: {fileID: 5183851593158275512}
+  <ButtonClickSound>k__BackingField: {fileID: 8300000, guid: e51f854ad18495843a41893eb8b82cee,
+    type: 3}
   elixirText: {fileID: 8792948109558066416}
 --- !u!114 &3745064453541334714
 MonoBehaviour:
@@ -4393,6 +4409,7 @@ MonoBehaviour:
   - {fileID: 7476402631725364522}
   - {fileID: 5694437564771641444}
   shadowImage: {fileID: 7920741338001728557}
+  startGameSound: {fileID: 8300000, guid: 5238817f01943e7409a7953327299cc8, type: 3}
 --- !u!1001 &483352077941414815
 PrefabInstance:
   m_ObjectHideFlags: 0

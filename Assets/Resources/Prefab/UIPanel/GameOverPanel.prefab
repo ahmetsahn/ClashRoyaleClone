@@ -248,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subscriptionType: 1
   button: {fileID: 6833702666914485810}
+  selectSound: {fileID: 8300000, guid: e51f854ad18495843a41893eb8b82cee, type: 3}
 --- !u!1 &4301806329324019753
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,15 +14,22 @@ namespace InputSystem
         
         private readonly int _layerMask = 1 << LayerMask.NameToLayer("Ground");
         
+        private readonly AudioClip _leftClickSound;
+        private readonly AudioClip _rightClickSound;
+        
         private bool _isEnableInput;
         private bool _isCardSelected;
         
         public InputHandler(
             InputSignals inputSignals,
-            ButtonSignals buttonSignals)
+            ButtonSignals buttonSignals,
+            AudioClip leftClickSound,
+            AudioClip rightClickSound)
         {
             _inputSignals = inputSignals;
             _buttonSignals = buttonSignals;
+            _leftClickSound = leftClickSound;
+            _rightClickSound = rightClickSound;
             
             SubscribeEvents();
         }
@@ -63,12 +70,15 @@ namespace InputSystem
             if (Input.GetMouseButtonDown(0))
             {
                 _inputSignals.OnClickMouseButtonDown?.Invoke();
+                AudioSource.PlayClipAtPoint(_leftClickSound, Util.Utils.MainCamera.transform.position);
             }
 
-            if (!Input.GetMouseButtonDown(1)) return;
-            
-            _buttonSignals.OnSetDeActiveAllCardPreview?.Invoke();
-            _buttonSignals.OnIsSelectedCard?.Invoke(false);
+            if (Input.GetMouseButtonDown(1))
+            {
+                _buttonSignals.OnSetDeActiveAllCardPreview?.Invoke();
+                _buttonSignals.OnIsSelectedCard?.Invoke(false);
+                AudioSource.PlayClipAtPoint(_rightClickSound, Util.Utils.MainCamera.transform.position);
+            }
         }
         
         private void UnsubscribeEvents()

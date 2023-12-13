@@ -1,4 +1,6 @@
 using UISystem.CardButtonSystem.View;
+using UnityEngine;
+using Util;
 
 namespace UISystem.CardButtonSystem.State
 {
@@ -19,6 +21,7 @@ namespace UISystem.CardButtonSystem.State
              ButtonSignals.OnSetSelectedCardElixirCost?.Invoke(_cardButtonView.CardButtonSo.UICardElixirData.ElixirCost);
              ButtonSignals.OnSetDeActiveAllCardPreview?.Invoke();
             _cardButtonView.CardPreview.SetActive(true);
+            AudioSource.PlayClipAtPoint(_cardButtonView.ButtonClickSound, Utils.MainCamera.transform.position);
         }
     }
 }

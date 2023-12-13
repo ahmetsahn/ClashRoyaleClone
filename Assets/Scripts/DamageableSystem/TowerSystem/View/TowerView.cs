@@ -1,6 +1,7 @@
 using DamageableSystem.Abstract.View;
 using Enums;
 using Interfaces;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 

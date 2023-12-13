@@ -1716,6 +1716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c111d9bfead449bebd3610ae26a178b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   <ProjectileSpawnPoint>k__BackingField: {fileID: 7891144020953622440}
 --- !u!1 &6646301130960461290
 GameObject:

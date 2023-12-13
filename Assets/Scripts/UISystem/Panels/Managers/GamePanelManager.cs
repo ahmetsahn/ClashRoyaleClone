@@ -5,6 +5,7 @@ using Signal;
 using UISystem.CardButtonSystem.View;
 using UnityEngine;
 using UnityEngine.UI;
+using Util;
 using Zenject;
 
 namespace UISystem.Panels.Managers
@@ -22,7 +23,7 @@ namespace UISystem.Panels.Managers
         
         [SerializeField]
         private Image shadowImage;
-
+        
         private readonly Dictionary<CardButtonView, CardButtonView> _buttonDictionary = new();
         
         private UISignals _uiSignals;

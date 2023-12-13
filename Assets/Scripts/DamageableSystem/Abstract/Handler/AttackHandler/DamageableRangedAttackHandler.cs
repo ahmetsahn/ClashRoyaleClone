@@ -33,6 +33,7 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
                 return;
             }
             
+            PlayAttackSound();
             SetProjectile();
             SetProjectilePosition();
             SetActiveProjectile();

@@ -1,12 +1,16 @@
 using DamageableSystem.CardSystem.View.Abstract;
 using Enums;
 using Interfaces;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace DamageableSystem.CardSystem.View
 {
     public class BuildingCardView : CardView
     {
+        [field: SerializeField]
+        public AudioSource AudioSource { get; private set; }
+        
         public UnityAction<BuildingCardStateType> OnSwitchState;
         
         public UnityAction OnEnterAttackState;

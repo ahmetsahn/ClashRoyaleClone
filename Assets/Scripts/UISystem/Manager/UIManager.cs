@@ -35,7 +35,10 @@ namespace UISystem.Manager
             _buttonSignals.OnPlayButtonClicked += OnPlayButtonClicked;
             _buttonSignals.OnMenuButtonClicked += OnMenuButtonClicked;
             _buttonSignals.OnExitButtonClicked += OnExitButtonClicked;
-            _coreGameSignals.OnGameEnd += OnCloseAllPanels;
+            _coreGameSignals.OnGameEnd += OnGameEnd;
+            _coreGameSignals.OnWin += OnWin;
+            _coreGameSignals.OnLose += OnLose;
+            
         }
 
         private void OnPlayButtonClicked()
@@ -57,9 +60,19 @@ namespace UISystem.Manager
             Application.Quit();
         }
         
-        private void OnCloseAllPanels()
+        private void OnGameEnd()
         {
             _uiSignals.OnCloseAllPanels.Invoke();
+        }
+        
+        private void OnWin()
+        {
+            _uiSignals.OnOpenPanel.Invoke(UIPanelType.WinPanel, 0);
+        }
+        
+        private void OnLose()
+        {
+            _uiSignals.OnOpenPanel.Invoke(UIPanelType.GameOverPanel, 0);
         }
         
         private void UnsubscribeEvents()
@@ -67,7 +80,7 @@ namespace UISystem.Manager
             _buttonSignals.OnPlayButtonClicked -= OnPlayButtonClicked;
             _buttonSignals.OnMenuButtonClicked -= OnMenuButtonClicked;
             _buttonSignals.OnExitButtonClicked -= OnExitButtonClicked;
-            _coreGameSignals.OnGameEnd -= OnCloseAllPanels;
+            _coreGameSignals.OnGameEnd -= OnGameEnd;
         }
 
         public void Dispose()

@@ -18,14 +18,15 @@ MonoBehaviour:
   isAreaDamageAttack: 0
   isRotatable: 1
   DamageableHealthData:
-    MaxHealth: 60
+    MaxHealth: 100
   DamageablePhysicData:
     TargetDetectionRange: 30
   DamageableAttackData:
     AttackParticleType: 0
-    AttackDamage: 10
+    AttackDamage: 40
     AttackRange: 1.15
     AttackSpeed: 2
+    AttackSound: {fileID: 8300000, guid: 67dd73a8fb8b99e4d8c8d793c86c4324, type: 3}
   CardInstallationData:
     InstallationTime: 3
   CardMovementData:

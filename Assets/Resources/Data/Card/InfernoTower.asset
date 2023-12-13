@@ -23,9 +23,10 @@ MonoBehaviour:
     TargetDetectionRange: 5
   DamageableAttackData:
     AttackParticleType: 1
-    AttackDamage: 0.2
+    AttackDamage: 0.5
     AttackRange: 5
     AttackSpeed: 0
+    AttackSound: {fileID: 8300000, guid: 4ed9ba3ed0e04f14cb5f2c45b3aa151f, type: 3}
   CardInstallationData:
     InstallationTime: 3
   CardMovementData:

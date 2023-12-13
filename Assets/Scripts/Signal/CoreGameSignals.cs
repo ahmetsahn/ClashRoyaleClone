@@ -6,5 +6,7 @@ namespace Signal
     {
         public UnityAction OnPlayStart;
         public UnityAction OnGameEnd;
+        public UnityAction OnWin;
+        public UnityAction OnLose;
     }
 }

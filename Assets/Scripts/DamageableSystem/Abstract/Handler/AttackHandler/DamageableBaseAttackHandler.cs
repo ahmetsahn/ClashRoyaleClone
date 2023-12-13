@@ -2,6 +2,7 @@ using DamageableSystem.Abstract.View;
 using ParticleSystem.View;
 using Signal;
 using UnityEngine;
+using Util;
 using Zenject;
 
 namespace DamageableSystem.Abstract.Handler.AttackHandler
@@ -15,6 +16,7 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
         private ParticlePoolSignals _particlePoolSignals;
         
         protected ParticleView AttackParticle;
+        
         
         [Inject]
         private void Construct(
@@ -31,11 +33,8 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
             {
                 return;
             }
-            
-            PlayAttackParticle();
-            
             DamageableView.CurrentTarget.TakeDamage(DamageableView.DamageableSo.DamageableAttackData.AttackDamage);
-            
+            PlayAttackParticle();
             ControlAndFireOnTargetDestroyed();
         }
 
@@ -54,6 +53,11 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
             SetAttackParticle();
             SetAttackParticlePosition();
             SetActiveAttackParticle();
+        }
+        
+        protected void PlayAttackSound()
+        {
+            AudioSource.PlayClipAtPoint(DamageableView.DamageableSo.DamageableAttackData.AttackSound, Utils.MainCamera.transform.position);
         }
 
         private void SetAttackParticle()
