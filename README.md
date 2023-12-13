@@ -2,5 +2,9 @@
 
 
 
-https://github.com/ahmetsahn/ClashRoyaleClone/assets/83590669/504bb218-333a-466e-9e5d-cadfc78990fb
+
+https://github.com/ahmetsahn/ClashRoyaleClone/assets/83590669/569ef5a1-7d47-4a9c-be16-9b6d61a43ee2
+
+
+
 
