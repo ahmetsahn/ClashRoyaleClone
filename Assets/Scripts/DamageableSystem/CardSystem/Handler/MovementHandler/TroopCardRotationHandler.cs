@@ -24,6 +24,7 @@ namespace DamageableSystem.CardSystem.Handler.MovementHandler
         {
             TroopCardView.OnRotateToTarget += OnRotateToTarget;
             TroopCardView.OnSetInitialRotation += OnSetInitialRotation;
+            TroopCardView.OnSetNewTarget += OnRotateToTarget;
         }
         
         private void OnSetInitialRotation()
@@ -37,6 +38,7 @@ namespace DamageableSystem.CardSystem.Handler.MovementHandler
         {
             TroopCardView.OnRotateToTarget -= OnRotateToTarget;
             TroopCardView.OnSetInitialRotation -= OnSetInitialRotation;
+            TroopCardView.OnSetNewTarget -= OnRotateToTarget;
         }
     }
 }

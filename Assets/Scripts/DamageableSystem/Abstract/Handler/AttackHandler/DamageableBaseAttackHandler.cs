@@ -40,6 +40,11 @@ namespace DamageableSystem.Abstract.Handler.AttackHandler
 
         protected void ControlAndFireOnTargetDestroyed()
         {
+            if(DamageableView.CurrentTarget == null)
+            {
+                return;
+            }
+            
             if(!DamageableView.CurrentTarget.IsDead)
             {
                 return;

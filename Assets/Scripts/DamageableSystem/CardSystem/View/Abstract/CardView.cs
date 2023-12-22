@@ -11,7 +11,7 @@ namespace DamageableSystem.CardSystem.View.Abstract
 {
     public abstract class CardView : DamageableView
     {
-        public CoreGameSignals CoreGameSignals;
+        private CoreGameSignals _coreGameSignals;
         
         public CardPoolSignals CardPoolSignals;
         
@@ -24,7 +24,7 @@ namespace DamageableSystem.CardSystem.View.Abstract
             CoreGameSignals coreGameSignals,
             CardPoolSignals cardPoolSignals)
         {
-            CoreGameSignals = coreGameSignals;
+            _coreGameSignals = coreGameSignals;
             CardPoolSignals = cardPoolSignals;
         }
 
@@ -49,30 +49,35 @@ namespace DamageableSystem.CardSystem.View.Abstract
             
             CancellationTokenSource.Cancel();
             CancellationTokenSource.Dispose();
-            CancellationTokenSource = null;
         }
 
         protected override void SubscribeEvents()
         {
             base.SubscribeEvents();
-            CoreGameSignals.OnGameEnd += OnReturnToPool;
+            _coreGameSignals.OnGameEnd += OnReturnToPool;
         }
         
         private void OnReturnToPool()
         {
             CardPoolSignals.OnReturnCardToPool?.Invoke(this);
         }
+        
+        private void SetTargetNull()
+        {
+            CurrentTarget = null;
+        }
 
         protected override void UnsubscribeEvents()
         {
             base.UnsubscribeEvents();
-            CoreGameSignals.OnGameEnd -= OnReturnToPool;
+            _coreGameSignals.OnGameEnd -= OnReturnToPool;
         }
 
         protected override void OnDisable()
         {
             base.OnDisable();
             DestroyToken();
+            SetTargetNull();
         }
 
         public class Factory : PlaceholderFactory<CardType, CardView> { }
