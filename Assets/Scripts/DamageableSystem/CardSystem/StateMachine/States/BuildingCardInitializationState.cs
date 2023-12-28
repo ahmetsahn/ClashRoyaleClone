@@ -1,5 +1,6 @@
 using DamageableSystem.CardSystem.StateMachine.Abstract;
 using DamageableSystem.CardSystem.View;
+using DG.Tweening;
 using Enums;
 
 namespace DamageableSystem.CardSystem.StateMachine.States

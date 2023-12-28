@@ -20,8 +20,7 @@ namespace DamageableSystem.CardSystem.StateMachine.Abstract
                 // ignored
             }
         }
-
-
+        
         protected virtual void ExitInitializationState()
         {
             CardView.OnSetAttackColliderEnabled?.Invoke(true);

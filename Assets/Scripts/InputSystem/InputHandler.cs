@@ -1,5 +1,4 @@
 using System;
-using Enums;
 using Signal;
 using UnityEngine;
 using Zenject;
@@ -17,7 +16,7 @@ namespace InputSystem
         private readonly AudioClip _leftClickSound;
         private readonly AudioClip _rightClickSound;
         
-        private bool _isEnableInput;
+        private bool _isEnableInput = true;
         private bool _isCardSelected;
         
         public InputHandler(
@@ -72,7 +71,7 @@ namespace InputSystem
                 _inputSignals.OnClickMouseButtonDown?.Invoke();
                 AudioSource.PlayClipAtPoint(_leftClickSound, Util.Utils.MainCamera.transform.position);
             }
-
+            
             if (Input.GetMouseButtonDown(1))
             {
                 _buttonSignals.OnSetDeActiveAllCardPreview?.Invoke();

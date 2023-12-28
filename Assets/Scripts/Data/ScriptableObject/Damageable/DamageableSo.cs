@@ -15,6 +15,9 @@ namespace Data.ScriptableObject.Damageable
         private bool isTroopCard;
         
         [SerializeField]
+        private bool isBuildingCard;
+        
+        [SerializeField]
         private bool isRangedAttack;
         
         [SerializeField]
@@ -37,6 +40,9 @@ namespace Data.ScriptableObject.Damageable
         
         [ShowIf(nameof(isTroopCard))]
         public CardNavmeshData CardNavmeshData;
+        
+        [ShowIf(nameof(isBuildingCard))]
+        public BuildingCardLifeTime BuildingCardLifeTime;
         
         [ShowIf(nameof(isRangedAttack))]
         public RangedDamageableAttackData RangedDamageableAttackData;

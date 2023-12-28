@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using DamageableSystem.CardSystem.View.Abstract;
 using Enums;
 using Interfaces;
@@ -22,6 +23,7 @@ namespace DamageableSystem.CardSystem.View
         {
             base.InitializeDamageable();
             OnSwitchState?.Invoke(BuildingCardStateType.Initialization);
+            InvokeRepeating(nameof(StartLifeCycle), DamageableSo.CardInstallationData.InstallationTime, 0.01f);
         }
 
         protected override void OnTargetDestroyed(IDamageable target)
@@ -44,10 +46,22 @@ namespace DamageableSystem.CardSystem.View
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
+            
             if (IsDead)
             {
                 OnSwitchState?.Invoke(BuildingCardStateType.Death);
             }
+        }
+        
+        private void StartLifeCycle()
+        {
+            TakeDamage(1/DamageableSo.BuildingCardLifeTime.LifeTime);
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            CancelInvoke(nameof(StartLifeCycle));
         }
     }
 }

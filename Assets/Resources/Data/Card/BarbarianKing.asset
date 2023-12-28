@@ -28,7 +28,7 @@ MonoBehaviour:
     AttackSpeed: 2
     AttackSound: {fileID: 8300000, guid: 67dd73a8fb8b99e4d8c8d793c86c4324, type: 3}
   CardInstallationData:
-    InstallationTime: 3
+    InstallationTime: 2
   CardMovementData:
     MovementSpeed: 2.25
   CardNavmeshData:

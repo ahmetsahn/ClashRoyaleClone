@@ -16,7 +16,7 @@ namespace LevelSystem.Factory
         }
         public LevelView Create()
         {
-            return _instantiator.InstantiatePrefabForComponent<LevelView>(Resources.Load<GameObject>(LEVEL_PATH));
+            return _instantiator.InstantiatePrefabResourceForComponent<LevelView>(LEVEL_PATH);
         }
     }
 }

@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCard: 1
   isTroopCard: 1
+  isBuildingCard: 0
   isRangedAttack: 0
   isAreaDamageAttack: 0
   isRotatable: 1
   DamageableHealthData:
-    MaxHealth: 200
+    MaxHealth: 250
   DamageablePhysicData:
     TargetDetectionRange: 30
   DamageableAttackData:
@@ -28,12 +29,14 @@ MonoBehaviour:
     AttackSpeed: 2
     AttackSound: {fileID: 8300000, guid: 67dd73a8fb8b99e4d8c8d793c86c4324, type: 3}
   CardInstallationData:
-    InstallationTime: 5
+    InstallationTime: 3
   CardMovementData:
     MovementSpeed: 2
   CardNavmeshData:
     NavmeshRadius: 0.5
     NavmeshHeight: 2.5
+  BuildingCardLifeTime:
+    LifeTime: 0
   RangedDamageableAttackData:
     ProjectileType: 0
     ProjectileSpeed: 0

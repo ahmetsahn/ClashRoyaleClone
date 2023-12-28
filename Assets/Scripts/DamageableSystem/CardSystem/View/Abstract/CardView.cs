@@ -42,11 +42,6 @@ namespace DamageableSystem.CardSystem.View.Abstract
         
         private void DestroyToken()
         {
-            if(CancellationTokenSource == null)
-            {
-                return;
-            }
-            
             CancellationTokenSource.Cancel();
             CancellationTokenSource.Dispose();
         }

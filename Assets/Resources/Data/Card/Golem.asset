@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCard: 1
   isTroopCard: 1
+  isBuildingCard: 0
   isRangedAttack: 1
   isAreaDamageAttack: 1
   isRotatable: 1
   DamageableHealthData:
-    MaxHealth: 200
+    MaxHealth: 250
   DamageablePhysicData:
     TargetDetectionRange: 28
   DamageableAttackData:
@@ -34,6 +35,8 @@ MonoBehaviour:
   CardNavmeshData:
     NavmeshRadius: 0.5
     NavmeshHeight: 2.6
+  BuildingCardLifeTime:
+    LifeTime: 0
   RangedDamageableAttackData:
     ProjectileType: 3
     ProjectileSpeed: 20
